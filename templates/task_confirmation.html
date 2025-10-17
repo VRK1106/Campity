@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Accepted</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background-size: 200% 200%;
+            animation: gradient-shift 15s ease infinite;
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .card {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(209, 213, 219, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="card rounded-3xl shadow-2xl p-8 max-w-lg w-full text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-green-500 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Task Accepted!</h1>
+        <p class="text-gray-600 mb-6">You've successfully claimed the task and are on your way to helping a fellow student. Here are the details:</p>
+        
+        <div class="space-y-4 text-left">
+            <div class="bg-gray-100 p-4 rounded-xl shadow-inner">
+                <p class="text-sm font-semibold text-gray-700">Task Title:</p>
+                <p class="text-lg text-gray-900 mt-1">{{ task.task_name }}</p>
+            </div>
+            <div class="bg-gray-100 p-4 rounded-xl shadow-inner">
+                <p class="text-sm font-semibold text-gray-700">Description:</p>
+                <p class="text-lg text-gray-900 mt-1">{{ task.task_description }}</p>
+            </div>
+            <div class="bg-gray-100 p-4 rounded-xl shadow-inner">
+                <p class="text-sm font-semibold text-gray-700">Reward:</p>
+                <p class="text-lg text-gray-900 mt-1">₹{{ "%.2f"|format(task.reward) }}</p>
+            </div>
+        </div>
+        
+        <a href="{{ url_for('dashboard', username=username) }}" class="mt-8 inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-indigo-700 transition-colors duration-200">
+            Go to Dashboard
+        </a>
+    </div>
+</body>
+</html>

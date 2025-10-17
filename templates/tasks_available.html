@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Tasks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background-size: 200% 200%;
+            animation: gradient-shift 15s ease infinite;
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .card {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(209, 213, 219, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="card rounded-3xl shadow-2xl p-8 max-w-2xl w-full">
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Available Tasks</h1>
+        {% if tasks %}
+            <div class="space-y-6">
+                {% for task in tasks %}
+                <div class="bg-gray-50 rounded-2xl p-6 shadow-md border border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">{{ task.task_name }}</h2>
+                        <p class="text-sm text-gray-600 mt-1">{{ task.task_description }}</p>
+                        <p class="text-sm font-medium text-green-600 mt-2">Reward: ₹{{ "%.2f"|format(task.reward) }}</p>
+                    </div>
+                    <!-- FIX: use a POST form instead of <a> -->
+                    <form action="{{ url_for('accept_task', username=username, task_id=task.task_id) }}" method="POST" class="mt-4 sm:mt-0">
+                        <button type="submit" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-xl hover:bg-indigo-700 transition-colors duration-200">
+                            Accept Task
+                        </button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-gray-600">No tasks are currently available. Check back later!</p>
+        {% endif %}
+    </div>
+</body>
+</html>

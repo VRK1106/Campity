@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campity - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .form-bg {
+            background-image: linear-gradient(135deg, #6366f1, #8b5cf6);
+        }
+        .input-field {
+            @apply w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-200;
+        }
+        .form-card {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="form-card bg-white rounded-2xl shadow-xl w-full max-w-md p-8 sm:p-10">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Login to Campity</h1>
+            <p class="text-gray-600 mt-2">Access your campus network.</p>
+        </div>
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="mb-6">
+            {% for message in messages %}
+                <li class="bg-red-100 text-red-700 text-center py-2 px-4 rounded-lg">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/login" method="POST" class="space-y-6">
+            <div>
+                <label for="username" class="text-sm font-medium text-gray-700 block mb-1">Username</label>
+                <input type="text" id="username" name="username" class="input-field" placeholder="Enter your username" required>
+            </div>
+            <div>
+                <label for="password" class="text-sm font-medium text-gray-700 block mb-1">Password</label>
+                <input type="password" id="password" name="password" class="input-field" placeholder="Enter your password" required>
+            </div>
+            <div>
+                <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Login</button>
+            </div>
+        </form>
+        <div class="mt-8 text-center text-sm text-gray-600">
+            <p>Don't have an account? <a href="/register" class="text-indigo-600 hover:text-indigo-800 font-semibold">Register here</a></p>
+        </div>
+    </div>
+</body>
+</html>

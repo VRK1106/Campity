@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ username }}'s Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5a67d8;
+            --secondary-color: #e2e8f0;
+            --background-color: #f7fafc;
+            --text-color: #2d3748;
+            --card-bg: rgba(255, 255, 255, 0.5);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #a7bfe8, #6197c3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: var(--glass-border);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .profile-container {
+                flex-direction: row;
+            }
+        }
+
+        .profile-card {
+            flex: 1;
+            padding: 30px;
+            background: var(--card-bg);
+            border: var(--glass-border);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .profile-header {
+            margin-bottom: 20px;
+        }
+
+        .profile-header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .profile-header p {
+            font-size: 1em;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        .stats-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+            border: var(--glass-border);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .tasks-section {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .task-list-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border: var(--glass-border);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .task-list-card h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #cbd5e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-list li:last-child {
+            border-bottom: none;
+        }
+
+        .task-details h3 {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .task-details p {
+            font-size: 0.9em;
+            color: #718096;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <h1>{{ user.username }}</h1>
+                <p>Campus Hero</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Rating</h3>
+                    <p class="stat-value">{{ user.rating }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Tasks Completed</h3>
+                    <!-- Fix: This will now display a number instead of a list -->
+                    <p class="stat-value">{{ tasks_accepted|length }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Tasks Posted</h3>
+                    <!-- Fix: This will now display a number instead of a list -->
+                    <p class="stat-value">{{ tasks_posted|length }}</p>
+                </div>
+            </div>
+            <a href="{{ url_for('dashboard', username=username) }}" class="back-link">Go back to Dashboard</a>
+        </div>
+        <div class="tasks-section">
+            <div class="task-list-card">
+                <h2>My Accepted Tasks</h2>
+                <ul class="task-list">
+                    {% for task in tasks_accepted %}
+                    <li>
+                        <div class="task-details">
+                            <h3>{{ task.task_name }}</h3>
+                            <p>Reward: ${{ task.reward }} ({{ task.reward_type }})</p>
+                            <p>Status: {{ task.task_status }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    {% if not tasks_accepted %}
+                    <p style="color: #718096; text-align: center;">You haven't accepted any tasks yet.</p>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="task-list-card">
+                <h2>My Posted Tasks</h2>
+                <ul class="task-list">
+                    {% for task in tasks_posted %}
+                    <li>
+                        <div class="task-details">
+                            <h3>{{ task.task_name }}</h3>
+                            <p>Reward: ${{ task.reward }} ({{ task.reward_type }})</p>
+                            <p>Status: {{ task.task_status }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    {% if not tasks_posted %}
+                    <p style="color: #718096; text-align: center;">You haven't posted any tasks yet.</p>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Accepted</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5a67d8;
+            --secondary-color: #e2e8f0;
+            --background-color: #f7fafc;
+            --text-color: #2d3748;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .container h1 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .container p {
+            font-size: 1.1em;
+            color: #718096;
+            margin-bottom: 25px;
+        }
+
+        .task-details {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+        }
+
+        .task-details h2 {
+            font-size: 1.2em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn:hover {
+            background-color: #434190;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Accepted!</h1>
+        <p>You have successfully accepted the following task:</p>
+        <div class="task-details">
+            <h2>{{ task.task_name }}</h2>
+            <p>{{ task.task_description }}</p>
+            <p><strong>Reward:</strong> ${{ task.reward }}</p>
+        </div>
+        <a href="{{ url_for('dashboard', username=username) }}" class="btn">Go to Dashboard</a>
+    </div>
+</body>
+</html>
