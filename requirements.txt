@@ -1,0 +1,6 @@
+Flask==2.0.3
+Flask-SQLAlchemy==2.5.1
+SQLAlchemy==1.4.46
+Flask-Bcrypt==1.0.1
+werkzeug==2.0.3
+paypalrestsdk==1.13.0
