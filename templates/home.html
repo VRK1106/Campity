@@ -1,100 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campity - Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Campity - Multiplayer Campus Operations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7fafc;
+            font-family: 'Outfit', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
         }
-        .header-bg {
-            background-image: linear-gradient(to right, #6366f1, #8b5cf6);
+
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .cta-button {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        .hero-text {
+            background: linear-gradient(to right, #4ade80, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen">
-    <header class="header-bg text-white p-6 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-3xl font-bold tracking-tight">Campity</a>
-            <nav>
-                <a href="/login" class="text-white hover:text-gray-200 transition-colors duration-200 text-lg font-medium px-4 py-2 rounded-lg">Login</a>
-                <a href="/register" class="bg-white text-indigo-600 hover:bg-gray-100 transition-colors duration-200 text-lg font-medium px-4 py-2 rounded-lg ml-4 shadow-md">Register</a>
-            </nav>
+
+<body class="min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="max-w-6xl mx-auto w-full p-6 flex justify-between items-center">
+        <div class="text-2xl font-bold hero-text">Campity</div>
+        <div class="space-x-4">
+            <a href="{{ url_for('login') }}" class="text-gray-300 hover:text-white transition">Login</a>
+            <a href="{{ url_for('register') }}"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-full font-bold transition">Join
+                the Game</a>
         </div>
-    </header>
+    </nav>
 
-    <main class="flex-grow container mx-auto p-8 lg:p-12">
-        <section class="text-center my-16">
-            <h1 class="text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight">Your Campus, <span class="text-indigo-600">Connected.</span></h1>
-            <p class="mt-4 text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">Campity is a campus-exclusive platform designed to help students with their last-minute needs, from printing documents to collecting parcels.</p>
-            <div class="mt-8 flex justify-center space-x-4">
-                <a href="/register" class="cta-button bg-indigo-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-indigo-700">Get Started</a>
-                <a href="#features" class="cta-button bg-transparent text-indigo-600 font-bold py-3 px-8 rounded-full text-lg border-2 border-indigo-600 hover:bg-indigo-100">Learn More</a>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <main class="flex-1 flex flex-col items-center justify-center text-center p-6 space-y-8">
+        <h1 class="text-5xl md:text-7xl font-black leading-tight">
+            Stop Asking for Favors.<br>
+            <span class="hero-text">Start Posting Quests.</span>
+        </h1>
+        <p class="max-w-2xl text-xl text-gray-400">
+            The multiplayer game for getting things done on campus. Earn credits, build reputation, and level up your
+            skills.
+        </p>
 
-        <section id="features" class="my-16">
-            <h2 class="text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-12">How It Works</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature Card 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 transition-transform duration-300 hover:scale-105">
-                    <div class="flex items-center justify-center bg-indigo-100 text-indigo-600 rounded-full w-12 h-12 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold text-xl mb-2 text-gray-800">Post a Task</h3>
-                    <p class="text-gray-600">Quickly post your urgent needs, from picking up a delivery to borrowing a book. Set a tip for the helper to show your appreciation.</p>
-                </div>
-                <!-- Feature Card 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 transition-transform duration-300 hover:scale-105">
-                    <div class="flex items-center justify-center bg-purple-100 text-purple-600 rounded-full w-12 h-12 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold text-xl mb-2 text-gray-800">Get Help Instantly</h3>
-                    <p class="text-gray-600">Peers in your campus community will be notified of your task. The first one to accept it gets the reward.</p>
-                </div>
-                <!-- Feature Card 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 transition-transform duration-300 hover:scale-105">
-                    <div class="flex items-center justify-center bg-pink-100 text-pink-600 rounded-full w-12 h-12 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold text-xl mb-2 text-gray-800">Build Trust</h3>
-                    <p class="text-gray-600">Helpers earn a reputation and ratings for every completed task, ensuring accountability and building a reliable community.</p>
-                </div>
-            </div>
-        </section>
+        <div class="flex gap-4">
+            <a href="{{ url_for('register') }}"
+                class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-2xl text-xl font-bold hover:scale-105 transition transform shadow-lg shadow-green-500/20">Start
+                Playing</a>
+            <a href="#"
+                class="bg-gray-800 text-white px-8 py-4 rounded-2xl text-xl font-bold hover:bg-gray-700 transition">View
+                Quests</a>
+        </div>
 
-        <section class="my-16 text-center bg-white p-10 rounded-2xl shadow-lg">
-            <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Join the Movement</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Campity is more than just a platform—it's about making student life more efficient and socially responsible. Join us and make a difference.</p>
-            <div class="mt-8">
-                <a href="/register" class="cta-button bg-indigo-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-indigo-700">Register Now</a>
+        <!-- Stats/Social Proof -->
+        <div class="grid grid-cols-3 gap-8 mt-12 text-center">
+            <div>
+                <div class="text-3xl font-bold text-white">500+</div>
+                <div class="text-sm text-gray-500">Active Solvers</div>
             </div>
-        </section>
+            <div>
+                <div class="text-3xl font-bold text-white">₹10k+</div>
+                <div class="text-sm text-gray-500">Credits Earned</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-white">24/7</div>
+                <div class="text-sm text-gray-500">Campus Ops</div>
+            </div>
+        </div>
     </main>
 
-    <footer class="bg-gray-800 text-white text-center py-6 mt-auto">
-        <div class="container mx-auto">
-            <p>&copy; 2025 Campity. All rights reserved.</p>
-        </div>
+    <footer class="p-6 text-center text-gray-600 text-sm">
+        &copy; 2026 Campity. Level up your campus life.
     </footer>
 </body>
+
 </html>

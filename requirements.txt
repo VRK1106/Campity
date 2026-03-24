@@ -1,6 +1,11 @@
-Flask==2.0.3
-Flask-SQLAlchemy==2.5.1
-SQLAlchemy==1.4.46
+Flask==2.2.5
+Werkzeug==2.2.3
+Flask-SQLAlchemy==3.0.3
+SQLAlchemy==2.0.15
 Flask-Bcrypt==1.0.1
-werkzeug==2.0.3
-paypalrestsdk==1.13.0
+paypalrestsdk
+psycopg2-binary
+redis
+flask-socketio==5.3.4
+python-dotenv
+eventlet

@@ -1,0 +1,293 @@
+/* Genshin Impact Theme - Celestial & Clean */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    --genshin-blue: #1C2240;
+    --genshin-gold: #D4AF37;
+    --genshin-white: #F0F2F5;
+    --genshin-glass: rgba(255, 255, 255, 0.85);
+    --genshin-glass-dark: rgba(28, 34, 64, 0.9);
+    --element-electro: #A968E8;
+    --element-anemo: #50Dca4;
+    --element-pyro: #E85D3E;
+    --element-geo: #E8B93E;
+    --element-dendro: #9ACD32;
+    --element-hydro: #00BFFF;
+    --element-cryo: #9FD6E3;
+}
+
+body {
+    /* Fallback and CSS-only Celestial Background */
+    background: radial-gradient(circle at 15% 50%, rgba(28, 34, 64, 0.9), transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(80, 220, 164, 0.1), transparent 30%),
+        /* Anemo tint */
+        radial-gradient(circle at 50% 80%, rgba(169, 104, 232, 0.1), transparent 40%),
+        /* Electro tint */
+        url('https://upload.wikimedia.org/wikipedia/commons/8/80/Hyades.jpg'),
+        linear-gradient(135deg, #0d1124 0%, #1C2240 50%, #2a3155 100%);
+    background-size: cover;
+    background-blend-mode: hard-light,
+        normal,
+        normal,
+        overlay,
+        normal;
+    background-attachment: fixed;
+    font-family: 'Inter',
+        sans-serif;
+    color: #4A4A4A;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Starry Animation Overlay */
+.stars-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite ease-in-out;
+    box-shadow: 0 0 5px white;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+.genshin-font {
+    font-family: 'Cinzel', serif;
+    color: var(--genshin-gold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+}
+
+/* Glassmorphism Containers */
+.paimon-menu {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    border: 3px solid #D4AF37;
+    /* Gold Border */
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.5);
+    padding: 32px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Corner Decorations */
+.corner-decor {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--genshin-gold);
+    pointer-events: none;
+}
+
+.top-left {
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.top-right {
+    top: 10px;
+    right: 10px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.bottom-left {
+    bottom: 10px;
+    left: 10px;
+    border-right: none;
+    border-top: none;
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
+}
+
+.paimon-menu:hover {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Auth Cards specifically */
+.auth-card {
+    background: rgba(26, 31, 56, 0.95);
+    /* Darker for Auth */
+    border: 2px solid rgba(212, 175, 55, 0.6);
+    color: #F0F2F5;
+}
+
+.auth-card h2 {
+    color: #F0F2F5;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* Stylish Inputs */
+.input-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.genshin-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 5px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s;
+    outline: none;
+}
+
+.genshin-input:focus {
+    border-bottom-color: var(--genshin-gold);
+    box-shadow: 0 10px 10px -10px rgba(212, 175, 55, 0.3);
+}
+
+.input-label {
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s;
+    pointer-events: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.genshin-input:focus~.input-label,
+.genshin-input:not(:placeholder-shown)~.input-label {
+    top: -15px;
+    font-size: 12px;
+    color: var(--genshin-gold);
+}
+
+/* Buttons */
+.genshin-btn {
+    background: linear-gradient(135deg, #E5E0D8 0%, #F5F3F0 100%);
+    border: 2px solid #D1C0A5;
+    border-radius: 50px;
+    color: #4A5568;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    padding: 12px 32px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.genshin-btn-primary {
+    background: linear-gradient(135deg, var(--genshin-gold) 0%, #F4D03F 100%);
+    color: #FFF;
+    border: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.genshin-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+.genshin-btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+/* Layout Helpers (Fallback for missing Tailwind) */
+.centered-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.w-full {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.max-w-md {
+    max-width: 450px;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.gap-4 {
+    gap: 1rem;
+}

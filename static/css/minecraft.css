@@ -1,0 +1,117 @@
+/* Minecraft Theme for Campity */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    --mc-bg-color: #1a1a1a; /* Fallback */
+    --mc-stone-bg: #c6c6c6;
+    --mc-stone-border-light: #ffffff;
+    --mc-stone-border-dark: #555555;
+    --mc-stone-border-darker: #000000;
+    --mc-text-shadow: 2px 2px 0px #3f3f3f;
+    --mc-green: #55ff55;
+    --mc-yellow: #ffff55;
+    --mc-red: #ff5555;
+    --mc-aqua: #55ffff;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    background-color: #2e211b; /* Dirt brown */
+    background-image: repeating-linear-gradient(45deg, #3d2e26 25%, transparent 25%, transparent 75%, #3d2e26 75%, #3d2e26), repeating-linear-gradient(45deg, #3d2e26 25%, #2e211b 25%, #2e211b 75%, #3d2e26 75%, #3d2e26);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+    color: #ffffff;
+    image-rendering: pixelated;
+}
+
+/* GUI Window Container */
+.mc-gui {
+    background-color: #c6c6c6;
+    border: 4px solid #000;
+    box-shadow: inset 4px 4px #fff, inset -4px -4px #555;
+    color: #3f3f3f;
+    padding: 16px;
+    position: relative;
+}
+
+.mc-gui h1, .mc-gui h2, .mc-gui h3, .mc-gui h4 {
+    color: #3f3f3f;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+/* Dark Panel (Inventory Slots background) */
+.mc-panel-dark {
+    background-color: #8b8b8b;
+    border: 2px solid;
+    border-color: #373737 #fff #fff #373737;
+    box-shadow: inset 2px 2px #000;
+    padding: 10px;
+}
+
+/* Stone Button */
+.mc-btn {
+    background-color: #c6c6c6;
+    border: 2px solid #000;
+    box-shadow: inset 2px 2px #fff, inset -2px -2px #555;
+    color: #000;
+    font-family: 'VT323', monospace;
+    font-size: 1.25rem;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-shadow: 2px 2px #fff;
+    transition: none; /* No smooth transition */
+}
+
+.mc-btn:active, .mc-btn.active {
+    background-color: #8b8b8b;
+    box-shadow: inset 2px 2px #373737, inset -2px -2px #fff;
+    transform: translateY(2px);
+}
+
+.mc-btn:hover {
+    background-color: #d9d9d9;
+    color: #ffff55; /* Highlight text on hover */
+    text-shadow: 2px 2px #3f3f3f;
+}
+
+/* Text Colors */
+.mc-text-title { font-size: 2rem; color: #ffffff; text-shadow: 3px 3px 0px #000; }
+.mc-text-green { color: #55ff55; text-shadow: 2px 2px 0px #000; }
+.mc-text-yellow { color: #ffff55; text-shadow: 2px 2px 0px #000; }
+.mc-text-red { color: #ff5555; text-shadow: 2px 2px 0px #000; }
+.mc-text-aqua { color: #55ffff; text-shadow: 2px 2px 0px #000; }
+
+/* Item Slot */
+.mc-slot {
+    width: 48px;
+    height: 48px;
+    background-color: #8b8b8b;
+    border: 2px solid;
+    border-color: #373737 #fff #fff #373737;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mc-slot img { width: 32px; height: 32px; image-rendering: pixelated; }
+
+/* Rarity Borders */
+.rarity-wood { border: 4px solid #8b5a2b !important; }
+.rarity-iron { border: 4px solid #d8d8d8 !important; }
+.rarity-diamond { border: 4px solid #55ffff !important; box-shadow: 0 0 10px #55ffff; }
+.rarity-netherite { border: 4px solid #2a2a2a !important; animation: pulse-netherite 2s infinite; }
+
+@keyframes pulse-netherite {
+    0% { box-shadow: 0 0 5px #500050; }
+    50% { box-shadow: 0 0 15px #a000a0; }
+    100% { box-shadow: 0 0 5px #500050; }
+}
+
+/* Tooltips */
+.mc-tooltip {
+    background: rgba(16, 0, 16, 0.95);
+    border: 2px solid #5000ff;
+    color: #fff;
+    padding: 4px 8px;
+}

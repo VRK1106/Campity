@@ -1,0 +1,32 @@
+services:
+  web:
+    build: .
+    command: python app.py
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/campity
+      - REDIS_URL=redis://redis:6379/0
+      - FLASK_ENV=development
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=campity
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:

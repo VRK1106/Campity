@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campity - Hall of Fame</title>
+    <link href="{{ url_for('static', filename='css/glossy.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Glass Navbar (Consistent with Dashboard) -->
+        <nav class="navbar glass-card"
+            style="margin-top: 20px; padding: 15px 30px; border-radius: 50px; position: sticky; top: 20px; z-index: 100;">
+            <a href="{{ url_for('dashboard') }}" class="nav-brand">Campity</a>
+
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <span style="font-weight: 500;">🏆 Hall of Fame</span>
+                <a href="{{ url_for('dashboard') }}" class="btn-glass">Back to Dashboard</a>
+            </div>
+        </nav>
+
+        <!-- Leaderboard Table -->
+        <div class="glass-card">
+            <h2 style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
+                Top Solvers
+                <span class="badge" style="background: rgba(236, 72, 153, 0.2); color: #db2777;">Weekly Ranking</span>
+            </h2>
+
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="text-align: left; border-bottom: 2px solid rgba(0,0,0,0.05);">
+                        <th style="padding: 15px; opacity: 0.6; font-size: 0.9rem;">Rank</th>
+                        <th style="padding: 15px; opacity: 0.6; font-size: 0.9rem;">User</th>
+                        <th style="padding: 15px; opacity: 0.6; font-size: 0.9rem;">Role</th>
+                        <th style="padding: 15px; text-align: right; opacity: 0.6; font-size: 0.9rem;">XP Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in top_users %}
+                    <tr style="border-bottom: 1px solid rgba(0,0,0,0.03); transition: background 0.2s;">
+                        <td style="padding: 15px;">
+                            {% if loop.index == 1 %}
+                            <span style="font-size: 1.2rem;">🥇</span>
+                            {% elif loop.index == 2 %}
+                            <span style="font-size: 1.2rem;">🥈</span>
+                            {% elif loop.index == 3 %}
+                            <span style="font-size: 1.2rem;">🥉</span>
+                            {% else %}
+                            <span style="font-weight: 600; color: var(--text-light); padding-left: 5px;">#{{ loop.index
+                                }}</span>
+                            {% endif %}
+                        </td>
+                        <td style="padding: 15px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div
+                                    style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #a855f7); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700;">
+                                    {{ player.username[0] | upper }}
+                                </div>
+                                <span
+                                    style="font-weight: 600; {{ 'color: var(--primary);' if player.username == user.username else '' }}">
+                                    {{ player.username }} {{ "(You)" if player.username == user.username else "" }}
+                                </span>
+                            </div>
+                        </td>
+                        <td style="padding: 15px;">
+                            <span class="badge" style="background: rgba(99, 102, 241, 0.1); color: #4f46e5;">{{
+                                player.role }}</span>
+                        </td>
+                        <td
+                            style="padding: 15px; text-align: right; font-weight: 700; font-family: 'Inter', sans-serif;">
+                            {{ player.xp }} XP
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: var(--text-light); font-size: 0.9rem;">
+            Top 3 players receive a <span style="color: var(--success); font-weight: 600;">+50 Credit Bonus</span> every
+            week.
+        </div>
+    </div>
+
+</body>
+
+</html>

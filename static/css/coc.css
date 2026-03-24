@@ -1,0 +1,181 @@
+/* Clash of Clans Theme - Supercell Style */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Lilita+One&family=Inter:wght@400;700&display=swap');
+
+:root {
+    /* CoC Color Palette */
+    --coc-green: #82c91e;
+    --coc-green-dark: #5c940d;
+    --coc-orange: #f59f00;
+    --coc-orange-dark: #c96d00;
+    --coc-stone: #7d8c97;
+    --coc-grass: #4a6828;
+    --coc-gold: #ffe163;
+    --coc-elixir: #d144e3;
+    --coc-text-stroke: 2px black;
+}
+
+body {
+    background-color: var(--coc-grass);
+    /* Smoother Isometric Grass with Vignette */
+    background-image:
+        radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.5) 100%),
+        repeating-linear-gradient(45deg, #5c940d 25%, transparent 25%, transparent 75%, #5c940d 75%, #5c940d),
+        repeating-linear-gradient(45deg, #5c940d 25%, #4a6828 25%, #4a6828 75%, #5c940d 75%, #5c940d);
+    background-position: 0 0, 0 0, 10px 10px;
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Supercell Typography */
+h1,
+h2,
+h3,
+h4,
+.coc-font {
+    font-family: 'Luckiest Guy', cursive;
+    color: #fff;
+    text-shadow:
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        2px 2px 0 #000,
+        0 4px 4px rgba(0, 0, 0, 0.5);
+    /* Drop Shadow */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.text-gold {
+    color: var(--coc-gold);
+}
+
+.text-elixir {
+    color: var(--coc-elixir);
+}
+
+/* Containers: Stone & Wooden Boards */
+.coc-panel {
+    background-color: #9a9a9a;
+    background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png');
+    /* Stone Texture */
+    border: 8px solid #5a3a29;
+    /* Dark Wood */
+    border-radius: 12px;
+    box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.4),
+        0 10px 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    position: relative;
+}
+
+/* Chunky 3D Buttons */
+.coc-btn {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 1.2rem;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.1s;
+    text-shadow: 0 2px 0 #000;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Primary Action (Attack/Post) - Orange */
+.coc-btn-primary {
+    background-color: var(--coc-orange);
+    box-shadow:
+        inset 0 4px 0 rgba(255, 255, 255, 0.4),
+        /* Highlight */
+        0 6px 0 var(--coc-orange-dark),
+        /* 3D Depth */
+        0 12px 10px rgba(0, 0, 0, 0.3);
+    /* Drop Shadow */
+}
+
+.coc-btn-primary:active {
+    transform: translateY(6px);
+    /* Push down */
+    box-shadow:
+        inset 0 4px 0 rgba(255, 255, 255, 0.4),
+        0 0 0 var(--coc-orange-dark),
+        0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Success Action (Accept/Claim) - Green */
+.coc-btn-success {
+    background-color: var(--coc-green);
+    box-shadow:
+        inset 0 4px 0 rgba(255, 255, 255, 0.4),
+        0 6px 0 var(--coc-green-dark),
+        0 12px 10px rgba(0, 0, 0, 0.3);
+}
+
+.coc-btn-success:active {
+    transform: translateY(6px);
+    box-shadow:
+        inset 0 4px 0 rgba(255, 255, 255, 0.4),
+        0 0 0 var(--coc-green-dark),
+        0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Close/Danger Button (Red X) */
+.coc-btn-close {
+    background: #e03131;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 1.5rem;
+    line-height: 40px;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    border: 2px solid white;
+    border-radius: 8px;
+    box-shadow: 0 4px 0 #9c1c1c, 0 6px 6px rgba(0, 0, 0, 0.4);
+}
+
+.coc-btn-close:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #9c1c1c;
+}
+
+/* Layout Helpers */
+.centered-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Resource Bar (Gold/Elixir) */
+.resource-bar {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #5a3a29;
+    border-radius: 20px;
+    padding: 4px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Lilita One', cursive;
+    font-size: 1.1rem;
+}
+
+.resource-icon {
+    width: 24px;
+    height: 24px;
+
+    /* Utility: CSS Shapes */
+    .clip-triangle {
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }

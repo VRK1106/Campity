@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campity - Create Request</title>
+    <link href="{{ url_for('static', filename='css/glossy.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Glass Navbar -->
+        <nav class="navbar glass-card"
+            style="margin-top: 20px; padding: 15px 30px; border-radius: 50px; position: sticky; top: 20px; z-index: 100;">
+            <a href="{{ url_for('dashboard') }}" class="nav-brand">Campity</a>
+
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <span style="font-weight: 500;">➕ New Request</span>
+                <a href="{{ url_for('dashboard') }}" class="btn-glass"
+                    style="color: var(--danger); border-color: rgba(239, 68, 68, 0.3);">Cancel</a>
+            </div>
+        </nav>
+
+        <div class="glass-card" style="max-width: 800px; margin: 40px auto; padding: 40px;">
+            <h1 style="text-align: center; font-size: 2rem; margin-bottom: 10px;">Create New Request</h1>
+            <p style="text-align: center; opacity: 0.6; margin-bottom: 40px;">Need help with something? Post a request
+                and get it done.</p>
+
+            <form method="POST">
+
+                <div style="margin-bottom: 24px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">Title</label>
+                    <input type="text" name="title" placeholder="e.g. Need lecture notes for Math 101" required>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <label
+                        style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">Description</label>
+                    <textarea name="description" placeholder="Describe exactly what you need..." required
+                        rows="4"></textarea>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
+                    <div>
+                        <label
+                            style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">Category</label>
+                        <select name="category">
+                            <option value="Tech Support">💻 Tech Support</option>
+                            <option value="Logistics">📦 Logistics & Delivery</option>
+                            <option value="Academics">📚 Academics</option>
+                            <option value="Labor">🛠️ Labor & Help</option>
+                            <option value="Urgent">🔥 Urgent</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">Reward
+                            (Credits)</label>
+                        <input type="number" name="reward" value="50" min="10" required
+                            style="font-weight: 700; color: var(--primary);">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-glossy"
+                    style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 16px;">
+                    Post Request
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
